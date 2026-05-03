@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Filament\Resources\ReadingLogs\Tables;
+
+use Auth;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+
+class ReadingLogsTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('readingProgress.id')
+                    ->searchable()
+                    ->hidden(),
+                TextColumn::make('date_read')
+                    ->date(),
+                TextColumn::make('start_page')
+                    ->numeric(),
+                TextColumn::make('end_page')
+                    ->numeric(),
+                TextColumn::make('total_page_read')
+                    ->numeric(),
+                IconColumn::make('verified')
+                    ->boolean()
+                    ->falseIcon(Heroicon::XCircle)
+                    ->falseColor('danger')
+                    ->trueIcon(Heroicon::CheckBadge)
+                    ->trueColor('success'),
+                TextColumn::make('summary')
+                    ->numeric()
+                    ->wrap()
+                    ->lineClamp(2),
+                TextColumn::make('teacher_note')
+                    ->numeric()
+                    ->wrap()
+                    ->width('20%')
+                    ->lineClamp(2),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->defaultSort('date_read', 'desc')
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                //ViewAction::make(),
+                EditAction::make()
+                    ->label(function (){
+                        if(Auth::user()->hasRole('siswa')){
+                            return 'Revise';
+                        }
+                        return 'Review & Verify';
+                    })
+                    ->slideOver(),
+
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
