@@ -54,7 +54,7 @@ class ClassGroupResource extends Resource
     {
         return [
             'index' => ListClassGroups::route('/'),
-            'create' => CreateClassGroup::route('/create'),
+            //'create' => CreateClassGroup::route('/create'),
             'view' => ViewClassGroup::route('/{record}'),
             //'edit' => EditClassGroup::route('/{record}/edit'),
             'manage' => Pages\ManageClassMembers::route('/{record}/manage'),
