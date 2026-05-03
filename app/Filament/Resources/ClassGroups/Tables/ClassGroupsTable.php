@@ -74,7 +74,7 @@ class ClassGroupsTable
                     ->icon(TablerIcon::ReplaceUser)
                     ->iconSize('lg')
                     ->color('info')
-                    ->url(fn ($record): string => ClassGroupResource::getUrl('manageMembers',['record'=>$record])),
+                    ->url(fn ($record): string => ClassGroupResource::getUrl('manage',['record'=>$record])),
                 DeleteAction::make()
                     ->hiddenLabel()
                     ->tooltip('Delete This Class')
