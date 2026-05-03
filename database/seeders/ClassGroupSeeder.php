@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Classgroup;
+use App\Models\ClassGroup;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,7 +24,7 @@ class ClassGroupSeeder extends Seeder
         ];
 
         foreach ($classgroups as $classgroup) {
-            Classgroup::create($classgroup);
+            ClassGroup::create($classgroup);
         }
     }
 }
