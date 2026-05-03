@@ -16,7 +16,7 @@ class Student extends Model
 
     public function classGroup(): BelongsTo
     {
-        return $this->belongsTo(Classgroup::class, 'class_group_id', 'id');
+        return $this->belongsTo(ClassGroup::class, 'class_group_id', 'id');
     }
 
     public function teacher(): BelongsTo
