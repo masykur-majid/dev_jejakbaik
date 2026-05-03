@@ -28,16 +28,14 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('panel')
-            ->viteTheme('resources/css/filament/record/theme.css')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->login()
             ->colors([
-                'primary' => Color::Indigo,
-                'pink' => Color::Pink,
-                'mist' => Color::Mist,
-                'teal' => Color::Teal,
-                'mauve' => Color::Mauve
+                'primary' => Color::Teal,
 
             ])
+            ->sidebarCollapsibleOnDesktop()
+            ->font('Poppins')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
