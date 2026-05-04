@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Students\Schemas;
 
+use App\Models\User;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -26,10 +27,19 @@ class StudentForm
                 TextInput::make('student_name')
                     ->required(),
                 TextInput::make('email')
-                    ->label('Email address')
-                    ->suffix('@jejakbaik.web.id')
-                    ->dehydrateStateUsing(fn ($state) => $state . '@jejakbaik.web.id')
-                    ->required(),
+                    ->email()
+                    ->required()
+                    ->unique(ignoreRecord: true)
+                    ->live()
+                    ->afterStateUpdated(function ($state, $livewire, $component) {
+                        // Logic to check if email exists manually
+                        $exists = User::where('email', $state)->exists();
+                        
+                        if ($exists) {
+                            // Force validation if you want to show a standard error message
+                            $livewire->validateOnly($component->getStatePath());
+                        }
+                    }),
                 Select::make('current_grade')
                     ->required()
                     ->default('X')

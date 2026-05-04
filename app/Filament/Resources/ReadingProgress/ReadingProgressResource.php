@@ -11,12 +11,15 @@ use App\Filament\Resources\ReadingProgress\Schemas\ReadingProgressForm;
 use App\Filament\Resources\ReadingProgress\Schemas\ReadingProgressInfolist;
 use App\Filament\Resources\ReadingProgress\Tables\ReadingProgressTable;
 use App\Models\ReadingProgress;
+use App\Models\Student;
+use Auth;
 use BackedEnum;
 use Daljo25\FilamentTablerIcons\Enums\TablerIcon;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class ReadingProgressResource extends Resource
@@ -59,5 +62,14 @@ class ReadingProgressResource extends Resource
             'view' => ViewReadingProgress::route('/{record}'),
             //'edit' => EditReadingProgress::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        
+        $user = auth()->user();
+        
+        return parent::getEloquentQuery()
+                ->when($user->hasRole('siswa'), fn ($query) => $query->whereRelation('student', 'user_id', $user->id));
     }
 }
