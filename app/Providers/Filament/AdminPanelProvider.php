@@ -34,6 +34,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Teal,
 
             ])
+            ->darkMode(false)
             ->sidebarCollapsibleOnDesktop()
             ->font('Poppins')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
