@@ -35,9 +35,12 @@ class StudentForm
                     ->inline()
                     ->default('X')
                     ->options([
-                        'X' => 'X',
-                        'XI' => 'XI',
-                        'XII' => 'XII',
+                        '7' => '7',
+                        '8' => '8',
+                        '9' => '9',
+                        '10' => '10',
+                        '11' => '12',
+                        '12' => '12',
                     ]),
                 Select::make('classgroup_id')
                     ->relationship('classgroup', 'class_name',fn (Builder $query) => $query->oldest()),
