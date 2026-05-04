@@ -27,7 +27,6 @@ class StudentObserver
             $user->assignRole('siswa');
 
             $student->user_id = $user->id;
-
         });
     }
 

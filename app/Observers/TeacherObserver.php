@@ -11,7 +11,7 @@ class TeacherObserver
     /**
      * Handle the Teacher "created" event.
      */
-    public function creating(Teacher $teacher): void
+    public function created(Teacher $teacher): void
     {
         DB::transaction(function () use ($teacher){
             $user  = User::create([
@@ -22,6 +22,7 @@ class TeacherObserver
 
             $user->assignRole('guru');
             $teacher->user_id = $user->id;
+            $teacher->saveQuietly();
 
         });
     }
@@ -32,7 +33,7 @@ class TeacherObserver
     public function updating(Teacher $teacher): void
     {
         if(is_null($teacher->user_id)){
-            $this->creating($teacher);
+            $this->created($teacher);
         }
         if($teacher->isDirty(['teacher_name', 'email'])){
             $teacher->user->update([
