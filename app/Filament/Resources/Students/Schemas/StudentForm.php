@@ -30,9 +30,8 @@ class StudentForm
                     ->suffix('@jejakbaik.web.id')
                     ->dehydrateStateUsing(fn ($state) => $state . '@jejakbaik.web.id')
                     ->required(),
-                Radio::make('current_grade')
+                Select::make('current_grade')
                     ->required()
-                    ->inline()
                     ->default('X')
                     ->options([
                         '7' => '7',
