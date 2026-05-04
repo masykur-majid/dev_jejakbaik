@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable('nisn', 'nis', 'student_name', 'email', 'grade', 'class_group_id', 'teacher_id')]
+#[Fillable('nisn', 'nis', 'student_name', 'email', 'current_grade', 'class_group_id', 'teacher_id')]
 class Student extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
