@@ -40,7 +40,7 @@ class StudentForm
                         'XII' => 'XII',
                     ]),
                 Select::make('classgroup_id')
-                    ->relationship('classgroup', 'class_name',fn (Builder $query) => $query->latest()),
+                    ->relationship('classgroup', 'class_name',fn (Builder $query) => $query->oldest()),
                 Select::make('teacher_id')
                     ->relationship('teacher', 'teacher_name')
                     ->label('Monitor Teacher'),
