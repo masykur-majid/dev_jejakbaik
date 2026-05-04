@@ -6,6 +6,7 @@ use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 
 class StudentForm
 {
@@ -26,7 +27,8 @@ class StudentForm
                     ->required(),
                 TextInput::make('email')
                     ->label('Email address')
-                    ->email()
+                    ->suffix('@jejakbaik.web.id')
+                    ->dehydrateStateUsing(fn ($state) => $state . '@jejakbaik.web.id')
                     ->required(),
                 Radio::make('current_grade')
                     ->required()
@@ -38,7 +40,7 @@ class StudentForm
                         'XII' => 'XII',
                     ]),
                 Select::make('classgroup_id')
-                    ->relationship('classgroup', 'class_name'),
+                    ->relationship('classgroup', 'class_name',fn (Builder $query) => $query->newest()),
                 Select::make('teacher_id')
                     ->relationship('teacher', 'teacher_name')
                     ->label('Monitor Teacher'),
