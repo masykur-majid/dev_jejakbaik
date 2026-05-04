@@ -40,7 +40,8 @@ class StudentForm
                         '10' => '10',
                         '11' => '11',
                         '12' => '12',
-                    ]),
+                    ])
+                    ->dehydrated(),
                 Select::make('classgroup_id')
                     ->relationship('classgroup', 'class_name',fn (Builder $query) => $query->oldest()),
                 Select::make('teacher_id')
