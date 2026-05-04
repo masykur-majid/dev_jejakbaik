@@ -13,10 +13,6 @@ class StudentObserver
      */
     public function created(Student $student): void
     {
-        //
-    }
-    public function creating(Student $student): void
-    {
         DB::transaction(function () use ($student){
             $user  = User::create([
                 'name' => $student->student_name,
@@ -27,6 +23,7 @@ class StudentObserver
             $user->assignRole('siswa');
 
             $student->user_id = $user->id;
+            $student->saveQuietly();
         });
     }
 
