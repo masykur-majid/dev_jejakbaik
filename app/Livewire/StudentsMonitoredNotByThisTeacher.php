@@ -52,8 +52,8 @@ class StudentsMonitoredNotByThisTeacher extends TableWidget
                     ->trueLabel('haven\'t got a mentor teacher')
                     ->falseLabel('is with the other mentor teacher')
                     ->queries(
-                        true: fn (Builder $query) => $query->doesntHave('teachers'),
-                        false: fn (Builder $query) => $query->has('teachers'),
+                        true: fn (Builder $query) => $query->doesntHave('teacher'),
+                        false: fn (Builder $query) => $query->has('teacher'),
                     )
             ], layout: FiltersLayout::AboveContent)
             ->filtersResetActionPosition(FiltersResetActionPosition::Footer)
