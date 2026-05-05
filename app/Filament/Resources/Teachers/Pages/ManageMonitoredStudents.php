@@ -20,7 +20,7 @@ class ManageMonitoredStudents extends EditRecord
 {
     public static function canAccess(array $parameters = []): bool
     {
-        return auth()->user()->can('manage_teacher');
+        return auth()->user()->can('Manage:Teacher');
     }
 
     protected static string $resource = TeacherResource::class;

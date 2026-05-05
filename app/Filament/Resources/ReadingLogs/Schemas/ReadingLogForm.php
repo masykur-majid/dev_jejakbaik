@@ -17,6 +17,7 @@ class ReadingLogForm
 {   
     public static function configure(Schema $schema): Schema
     {
+        
         return $schema
             ->components([
                 TextInput::make('reading_progress_id')
@@ -73,15 +74,11 @@ class ReadingLogForm
                     ->default(false)
                     ->dehydrated()
                     ->hidden(fn () => Auth::user()->hasRole('siswa')),
-                TextInput::make('teacher_id')
-                    ->numeric()
-                    ->default(function ($livewire){
-                        if(method_exists($livewire, 'getOwnerRecord')){    
-                            return $livewire->getOwnerRecord()->teacher_id;
-                        }
-                        return 0;
-                    })
-                    ->hidden(fn () => Auth::user()->hasRole('siswa')),
+                // TextInput::make('teacher_id')
+                //     ->default
+                       
+                //     })
+                // ->hidden(fn () => Auth::user()->hasRole('siswa')),
                 Textarea::make('teacher_note')
                     ->columnSpanFull()
                     ->disabled(fn () => Auth::user()->hasRole('siswa')),
