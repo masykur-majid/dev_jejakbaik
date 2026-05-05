@@ -70,6 +70,7 @@ class ReadingProgressResource extends Resource
         $user = auth()->user();
         
         return parent::getEloquentQuery()
-                ->when($user->hasRole('siswa'), fn ($query) => $query->whereRelation('student', 'user_id', $user->id));
+                ->when($user->hasRole('siswa'), fn ($query) => $query->whereRelation('student', 'user_id', $user->id))
+                ->when($user->hasRole('guru'), fn ($query) => $query->whereRelation('student.teacher', 'user_id', $user->id));
     }
 }
