@@ -17,7 +17,7 @@
         <div class="space-x-6 hidden md:block text-slate-600 font-medium">
             <a href="#fitur" class="hover:text-teal-600 transition">Fitur</a>
             <a href="#cara-kerja" class="hover:text-teal-600 transition">Cara Kerja</a>
-            <a href="/admin/login" class="px-6 py-2 border-2 border-teal-600 text-teal-600 rounded-full hover:bg-teal-600 hover:text-white transition">Masuk</a>
+            <a href="/panel/login" class="px-6 py-2 border-2 border-teal-600 text-teal-600 rounded-full hover:bg-teal-600 hover:text-white transition">Masuk</a>
         </div>
     </nav>
 
