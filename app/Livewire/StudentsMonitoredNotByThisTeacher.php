@@ -36,7 +36,7 @@ class StudentsMonitoredNotByThisTeacher extends TableWidget
                 TextColumn::make('student_name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('teacher.teacher_name')
+                TextColumn::make('classGroup.class_name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('updated_at')
@@ -46,18 +46,18 @@ class StudentsMonitoredNotByThisTeacher extends TableWidget
             
             ->filters([
                 
-                TernaryFilter::make('show_student_that')
-                    ->label('Show students who')
-                    ->placeholder('both haven\'t got any mentor and with other mentor')
-                    ->trueLabel('haven\'t got a mentor teacher')
-                    ->falseLabel('is with the other mentor teacher')
-                    ->queries(
-                        true: fn (Builder $query) => $query->doesntHave('teachers'),
-                        false: fn (Builder $query) => $query->has('teachers'),
-                    )
-            ], layout: FiltersLayout::AboveContent)
-            ->filtersResetActionPosition(FiltersResetActionPosition::Footer)
-            ->filtersFormColumns(1)
+                // TernaryFilter::make('show_student_that')
+                //     ->label('Show students who')
+                //     ->placeholder('both haven\'t got any mentor and with other mentor')
+                //     ->trueLabel('haven\'t got a mentor teacher')
+                //     ->falseLabel('is with the other mentor teacher')
+                //     ->queries(
+                //         true: fn (Builder $query) => $query->doesntHave('teacher'),
+                //         false: fn (Builder $query) => $query->has('teacher'),
+                //     )
+            ])
+            // ->filtersResetActionPosition(FiltersResetActionPosition::Footer)
+            // ->filtersFormColumns(1)
             
 
             ->headerActions([
