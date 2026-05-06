@@ -49,6 +49,7 @@ class ReadingLogForm
                             self::calculateTotalPages($set, $get);
                         }
                     )
+                    ->disabled()
                     ->dehydrated(),
                 TextInput::make('end_page')
                     ->required()
@@ -63,12 +64,14 @@ class ReadingLogForm
                 TextInput::make('total_page_read')
                     ->required()
                     ->numeric()
-                    ->readOnly()
+                    ->disabled()
                     ->default(0)
                     ->dehydrated()
                     ->reactive(),
                 Textarea::make('summary')
                     ->required()
+                    ->rows(3)
+                    ->autosize()
                     ->columnSpanFull(),
                 Toggle::make('verified')
                     ->default(false)

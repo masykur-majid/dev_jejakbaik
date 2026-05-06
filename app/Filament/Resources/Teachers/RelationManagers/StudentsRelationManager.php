@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Teachers\RelationManagers;
 
 use App\Filament\Resources\Teachers\Pages\ViewTeacher;
 use App\Filament\Resources\Teachers\TeacherResource;
+use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
@@ -44,7 +45,9 @@ class StudentsRelationManager extends RelationManager
                     ->sortable()
             ])
             ->headerActions([
-                CreateAction::make(),
+                Action::make('manage_monitored_student')
+                 ->label('Manage Students')
+                 ->url(fn ()=>route('filament.admin.resources.teachers.manageMonitoredStudents')),
             ]);
     }
 }
