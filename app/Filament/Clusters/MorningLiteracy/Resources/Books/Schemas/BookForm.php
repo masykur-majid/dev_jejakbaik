@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Books\Schemas;
+namespace App\Filament\Clusters\MorningLiteracy\Resources\Books\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;

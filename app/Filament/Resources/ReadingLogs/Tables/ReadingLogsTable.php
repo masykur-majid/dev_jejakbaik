@@ -17,6 +17,8 @@ class ReadingLogsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->heading('Reading Logs')
+            ->description('Klik tombbol (+ New Reading Log) untuk menambahkan catatan aktivitas membaca kalian')
             ->columns([
                 TextColumn::make('readingProgress.id')
                     ->searchable()
@@ -24,11 +26,14 @@ class ReadingLogsTable
                 TextColumn::make('date_read')
                     ->date(),
                 TextColumn::make('start_page')
-                    ->numeric(),
+                    ->numeric()
+                    ->extraHeaderAttributes(['class' => 'whitespace-normal']),
                 TextColumn::make('end_page')
-                    ->numeric(),
+                    ->numeric()
+                    ->extraHeaderAttributes(['class' => 'whitespace-normal']),
                 TextColumn::make('total_page_read')
-                    ->numeric(),
+                    ->numeric()
+                    ->extraHeaderAttributes(['class' => 'whitespace-normal']),
                 IconColumn::make('verified')
                     ->boolean()
                     ->falseIcon(Heroicon::XCircle)
@@ -38,6 +43,7 @@ class ReadingLogsTable
                 TextColumn::make('summary')
                     ->numeric()
                     ->wrap()
+                    ->words(10)
                     ->lineClamp(2),
                 TextColumn::make('teacher_note')
                     ->numeric()
@@ -64,7 +70,8 @@ class ReadingLogsTable
                         }
                         return 'Review & Verify';
                     })
-                    ->slideOver(),
+                    ->slideOver()
+                    ->after(fn ($livewire) => $livewire->dispatch('refreshReadingProgress')),
 
             ])
             ->toolbarActions([

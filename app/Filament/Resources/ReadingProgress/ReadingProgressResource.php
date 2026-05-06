@@ -21,6 +21,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
+use App\Filament\Clusters\MorningLiteracy\MorningLiteracyCluster;
 
 class ReadingProgressResource extends Resource
 {
@@ -28,8 +29,7 @@ class ReadingProgressResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = TablerIcon::Timeline;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Morning Literacy';
-
+    protected static ?string $cluster = MorningLiteracyCluster::class;
     protected static ?string $navigationLabel = 'Reading Progress';
 
     public static function form(Schema $schema): Schema

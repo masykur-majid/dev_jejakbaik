@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Books\Tables;
+namespace App\Filament\Clusters\MorningLiteracy\Resources\Books\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -8,6 +8,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Enums\RecordActionsPosition;
 use Filament\Tables\Table;
 
 class BooksTable
@@ -39,9 +40,11 @@ class BooksTable
                 //ViewAction::make(),
                 EditAction::make()
                     ->slideOver()
-                    ->modalWidth('md'),
+                    ->modalWidth('md')
+                    ->hiddenLabel(),
                 DeleteAction::make()
-            ])
+                    ->hiddenLabel()
+            ], position: RecordActionsPosition::BeforeColumns)
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),

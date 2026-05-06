@@ -5,8 +5,7 @@ namespace App\Filament\Resources\Teachers;
 use App\Filament\Resources\Teachers\Pages\CreateTeacher;
 use App\Filament\Resources\Teachers\Pages\EditTeacher;
 use App\Filament\Resources\Teachers\Pages\ListTeachers;
-use App\Filament\Resources\Teachers\Pages\ManageMonitoredStudents;
-use App\Filament\Resources\Teachers\Pages\ManageMonitorStudents;
+use App\Filament\Resources\Teachers\Pages\MonitoredStudentsManagement;
 use App\Filament\Resources\Teachers\Pages\ViewTeacher;
 use App\Filament\Resources\Teachers\RelationManagers\StudentsRelationManager;
 use App\Filament\Resources\Teachers\Schemas\TeacherForm;
@@ -18,6 +17,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use UnitEnum;
 
 class TeacherResource extends Resource
@@ -57,9 +57,31 @@ class TeacherResource extends Resource
             // 'create' => CreateTeacher::route('/create'),
             'view' => ViewTeacher::route('/{record}'),
             // 'edit' => EditTeacher::route('/{record}/edit'),
-            'manageMonitoredStudents' => ManageMonitoredStudents::route('/{record}/manage')
+            //'manageMonitoredStudents' => ManageMonitoredStudents::route('/{record}/manage'),
+            //'monitor' => MonitoredStudentsManagement::route('/{record}/monitor')
         ];
     }
 
-    
+    //mengatur agar saat guru yang login, hanya data mereka yang muncul   
+    public static function getEloquentQuery(): Builder
+    {   
+        $user = auth()->user();
+        
+        return parent::getEloquentQuery()
+                ->when($user->hasRole('guru'), fn ($query) => $query->where('user_id', $user->id));
+    }   
+
+    //mengatur agar navigasi langsung diarahkan ke view
+    public static function getNavigationUrl(): String{
+        $user = auth()->user();
+        if($user->hasRole('guru')){
+            $teacherRecord = Teacher::where('user_id', $user->id)->first();
+
+            if($teacherRecord){
+                return static::getUrl('view', ['record' => $teacherRecord]);
+            }
+            
+        }
+        return parent::getNavigationUrl();
+    }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\ReadingLog;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Observers\ReadingLogObserver;
 use App\Observers\StudentObserver;
 use App\Observers\TeacherObserver;
 use Illuminate\Support\ServiceProvider;
@@ -25,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Teacher::observe(TeacherObserver::class);
         Student::observe(StudentObserver::class);
+        ReadingLog::observe(ReadingLogObserver::class);
     }
 }

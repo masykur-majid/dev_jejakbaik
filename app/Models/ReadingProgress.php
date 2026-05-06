@@ -27,4 +27,16 @@ class ReadingProgress extends Model
     {
         return $this->hasMany(ReadingLog::class, 'reading_progress_id', 'id');
     }
+    public function updateProgress(int $lastPageRead): void
+    {
+        $this->current_page = $lastPageRead;
+        
+        if($this->current_page >= $this->book->total_pages){
+            $this->status = 'finished';
+        }else{
+            $this->status = 'reading';
+        }
+        
+        $this->save();
+    }
 }

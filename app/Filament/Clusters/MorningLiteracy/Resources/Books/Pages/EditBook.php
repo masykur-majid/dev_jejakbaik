@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Books\Pages;
+namespace App\Filament\Clusters\MorningLiteracy\Resources\Books\Pages;
 
-use App\Filament\Resources\Books\BookResource;
+use App\Filament\Clusters\MorningLiteracy\Resources\Books\BookResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;

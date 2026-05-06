@@ -11,6 +11,7 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\EditRecord;
+use Filament\Resources\Pages\ViewRecord;
 use Filament\Schemas\Components\Actions;
 use Filament\Schemas\Components\Livewire;
 use Filament\Schemas\Components\Section;

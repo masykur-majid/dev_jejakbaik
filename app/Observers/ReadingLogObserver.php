@@ -12,7 +12,7 @@ class ReadingLogObserver
      */
     public function created(ReadingLog $readingLog): void
     {
-        //
+        $this->syncProgress($readingLog->reading_progress_id);
     }
 
     /**
@@ -20,7 +20,10 @@ class ReadingLogObserver
      */
     public function updated(ReadingLog $readingLog): void
     {
-        //
+        
+         if($readingLog->wasChanged('end_page')){
+            $this->syncProgress($readingLog->reading_progress_id);
+        }
     }
 
     /**
@@ -28,7 +31,7 @@ class ReadingLogObserver
      */
     public function deleted(ReadingLog $readingLog): void
     {
-        //
+       $this->syncProgress($readingLog->reading_progress_id);
     }
 
     /**
@@ -53,11 +56,11 @@ class ReadingLogObserver
 
         if($progress){
             $lastLog = ReadingLog::where('reading_progress_id', $progress->id)
-                                        ->orderBy('last_page_read', 'desc')
+                                        ->orderBy('end_page', 'desc')
                                         ->first();
         }
 
-        $newCurrentPage = $lastLog ? $lastLog->last_page_read : 0;
+        $newCurrentPage = $lastLog ? $lastLog->end_page : 0;
         $progress->updateProgress($newCurrentPage);
     }
 }
