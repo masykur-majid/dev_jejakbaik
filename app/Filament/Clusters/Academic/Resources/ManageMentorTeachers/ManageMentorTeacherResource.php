@@ -23,6 +23,10 @@ class ManageMentorTeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
 
+    public static function canAccess(): bool{
+        return auth()->user()->hasRole('super_admin');
+    }
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static string| UnitEnum |null $navigationGroup = 'Akademik';
@@ -51,7 +55,7 @@ class ManageMentorTeacherResource extends Resource
     {
         
         return [
-                
+
         ];
     }
 
