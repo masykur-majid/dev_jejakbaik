@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Students;
 
+use App\Filament\Clusters\Academic\AcademicCluster;
 use App\Filament\Resources\Students\Pages\CreateStudent;
 use App\Filament\Resources\Students\Pages\EditStudent;
 use App\Filament\Resources\Students\Pages\ListStudents;
@@ -21,9 +22,17 @@ class StudentResource extends Resource
 {
     protected static ?string $model = Student::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;   
-    protected static string|UnitEnum|null $navigationGroup = 'Students & Teachers';
-    protected static ?string $navigationLabel = 'Students Management';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;  
+
+    protected static ?string $navigationLabel = 'Students';
+    protected static string| UnitEnum |null $navigationGroup = 'Akademik';
+    
+    // protected static ?string $cluster = AcademicCluster::class;
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -57,3 +66,4 @@ class StudentResource extends Resource
         ];
     }
 }
+

@@ -27,14 +27,16 @@ class ReadingProgress extends Model
     {
         return $this->hasMany(ReadingLog::class, 'reading_progress_id', 'id');
     }
-    public function updateProgress(int $lastPageRead): void
+    public function updateProgress(int $lastPageRead, string $readDate): void
     {
         $this->current_page = $lastPageRead;
         
         if($this->current_page >= $this->book->total_pages){
             $this->status = 'finished';
+            $this->finished_at = $readDate;
         }else{
             $this->status = 'reading';
+            $this->finished_at = null;
         }
         
         $this->save();

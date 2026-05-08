@@ -16,16 +16,17 @@ class StudentsMonitoredByThisTeacher extends TableWidget
     public $record;
 
     protected $listeners = ['refreshStudentsList' => 'refresh'];
-
-    public static function canView(): bool
+    
+     public static function canView(): bool
     {
-        return auth()->user()->hasRole('guru');
+        return auth()->user()->hasRole('super_admin');
     }
-
+    
     public function table(Table $table): Table
     {
+        // dd($this->record);
         return $table
-            ->heading('Student in Monitor')
+            ->heading('Siswa Binaan')
             ->description('Total: ' . Student::countStudentsMonitoredByThisTeacher($this->record->id) . ' students')
             ->extraAttributes([
                 'class' => '[&_.fi-ta-search-field]:!w-full [&_.fi-ta-search-field]:!max-w-none',

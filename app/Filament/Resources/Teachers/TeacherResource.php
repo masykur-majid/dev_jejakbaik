@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Teachers;
 
+use App\Filament\Clusters\Academic\AcademicCluster;
 use App\Filament\Resources\Teachers\Pages\CreateTeacher;
 use App\Filament\Resources\Teachers\Pages\EditTeacher;
 use App\Filament\Resources\Teachers\Pages\ListTeachers;
@@ -23,10 +24,19 @@ use UnitEnum;
 class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
-
+    
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;   
-    protected static string|UnitEnum|null $navigationGroup = 'Students & Teachers';
-    protected static ?string $navigationLabel = 'Teacher Management';
+    
+    protected static ?string $navigationLabel = 'Teacher';
+    
+    protected static string| UnitEnum |null $navigationGroup = 'Akademik';
+    
+    // protected static ?string $cluster = AcademicCluster::class;
+    
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -84,4 +94,5 @@ class TeacherResource extends Resource
         }
         return parent::getNavigationUrl();
     }
+
 }

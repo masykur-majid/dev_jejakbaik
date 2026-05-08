@@ -71,8 +71,7 @@ class Student extends Model
     }
     public function scopeShowStudentsMonitoredNotByThisTeacher(Builder $query, $teacher)
     {
-        return $query->whereNull('teacher_id')
-                      ->orWhere('teacher_id', '!=', $teacher);
+        return $query->whereNull('teacher_id');
     }
     public static function addMonitoredStudent($student_id, $teacher)
     {
@@ -91,6 +90,6 @@ class Student extends Model
 
     public static function countStudentsMonitoredNotByThisTeacher($teacher)
     {
-        return self::whereNot('teacher_id', $teacher)->count();
+        return self::whereNull('teacher_id')->count();
     }
 }
