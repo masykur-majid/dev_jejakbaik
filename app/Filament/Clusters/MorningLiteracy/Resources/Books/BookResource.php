@@ -17,6 +17,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class BookResource extends Resource
 {
@@ -24,7 +25,9 @@ class BookResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = TablerIcon::Books;
 
-    protected static ?string $cluster = MorningLiteracyCluster::class;
+    protected static string| UnitEnum |null $navigationGroup = 'Literasi Pagi';
+
+    // protected static ?string $cluster = MorningLiteracyCluster::class;
 
     public static function form(Schema $schema): Schema
     {

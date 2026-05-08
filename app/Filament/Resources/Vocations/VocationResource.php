@@ -22,8 +22,10 @@ class VocationResource extends Resource
     protected static ?string $model = Vocation::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Cog6Tooth;
-    protected static string|UnitEnum|null $navigationGroup = 'Class Management';
     protected static ?string $navigationLabel = 'Vocation';
+    protected static string| UnitEnum |null $navigationGroup = 'Akademik';
+    
+    // protected static ?string $cluster = AcademicCluster::class;
 
     public static function form(Schema $schema): Schema
     {

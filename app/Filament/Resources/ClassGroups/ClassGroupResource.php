@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ClassGroups;
 
+use App\Filament\Clusters\Academic\AcademicCluster;
 use App\Filament\Resources\ClassGroups\Pages\CreateClassGroup;
 use App\Filament\Resources\ClassGroups\Pages\EditClassGroup;
 use App\Filament\Resources\ClassGroups\Pages\ListClassGroups;
@@ -25,9 +26,17 @@ class ClassGroupResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = TablerIcon::ChalkboardTeacher;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Class Management';
+    protected static ?string $navigationLabel = 'Class';
+
+    protected static string| UnitEnum |null $navigationGroup = 'Akademik';
     
-    protected static ?string $navigationLabel = 'Class Group';
+    // protected static ?string $cluster = AcademicCluster::class;
+    
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+
     public static function form(Schema $schema): Schema
     {
         return ClassGroupForm::configure($schema);

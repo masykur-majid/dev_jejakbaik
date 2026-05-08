@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\Teachers\RelationManagers;
 
+use App\Filament\Clusters\Academic\Resources\ManageMentorTeachers\Pages\ViewManageMentorTeacher;
 use App\Filament\Resources\Teachers\Pages\ViewTeacher;
 use App\Filament\Resources\Teachers\TeacherResource;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
+use Filament\Pages\Dashboard\Actions\FilterAction;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -23,6 +25,7 @@ class StudentsRelationManager extends RelationManager
     {
         return $table
             ->recordTitleAttribute('student_name')
+            ->heading('SISWA BINAAN')
             ->columns([
                 TextColumn::make('nisn')
                     ->label('NISN')
@@ -45,9 +48,6 @@ class StudentsRelationManager extends RelationManager
                     ->sortable()
             ])
             ->headerActions([
-                Action::make('manage_monitored_student')
-                 ->label('Manage Students')
-                 ->url(fn ()=>route('filament.admin.resources.teachers.manageMonitoredStudents')),
             ]);
     }
 }

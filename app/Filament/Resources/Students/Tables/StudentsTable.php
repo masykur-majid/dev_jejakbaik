@@ -26,13 +26,15 @@ class StudentsTable
                     ->searchable(),
                 TextColumn::make('nis')
                     ->label('NIS')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('student_name')
                     ->label('Students Name')
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email Address')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('current_grade')
                     ->label('Grade')
                     ->searchable(),
@@ -42,7 +44,8 @@ class StudentsTable
                     ->sortable(),
                 TextColumn::make('teacher.teacher_name')
                     ->placeholder('-')
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

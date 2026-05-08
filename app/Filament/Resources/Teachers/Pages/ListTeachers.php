@@ -27,9 +27,9 @@ class ListTeachers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()
-                ->slideOver()
-                ->modalwidth('lg'),
+            // CreateAction::make()
+            //     ->slideOver()
+            //     ->modalwidth('lg'),
         ];
     }
 }

@@ -61,6 +61,7 @@ class ReadingLogObserver
         }
 
         $newCurrentPage = $lastLog ? $lastLog->end_page : 0;
-        $progress->updateProgress($newCurrentPage);
+        $readDate = $lastLog->date_read;
+        $progress->updateProgress($newCurrentPage, $readDate);
     }
 }

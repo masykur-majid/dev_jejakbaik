@@ -29,7 +29,7 @@ class StudentsMonitoredNotByThisTeacher extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->heading('Other Students')
+            ->heading('Tambah Siswa Binaan')
             ->description('Total: '. Student::countStudentsMonitoredNotByThisTeacher($this->record->id).' students')
             ->query(Student::query()->showStudentsMonitoredNotByThisTeacher($this->record->id))
             ->columns([
@@ -39,6 +39,10 @@ class StudentsMonitoredNotByThisTeacher extends TableWidget
                 TextColumn::make('classGroup.class_name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('teacher_id')
+                    ->searchable()
+                    ->sortable()
+                    ->hidden(),
                 TextColumn::make('updated_at')
                     ->hidden(),
             ])
