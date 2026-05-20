@@ -33,7 +33,8 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors([
                 'primary' => Color::Teal,
-
+                'Neutral' => Color::Neutral,
+                'Colour4' => Color::Zinc
             ])
             ->darkMode(false)
             ->sidebarCollapsibleOnDesktop()
@@ -69,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->navigationGroups([
                     'Literasi Pagi',
+                    'ParaPoint',
                     'Akademik',
                     'Kelola Pengguna'
             ])

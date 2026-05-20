@@ -21,7 +21,8 @@ class StudentFactory extends Factory
             'nisn' => fake()->randomNumber(9),
             'nis' => fake()->randomNumber(9),
             'student_name' => fake()->name(),
-            'email' => fake()->email()
+            'email' => fake()->email(),
+            'current_grade' => 10
         ];
     }
 }
