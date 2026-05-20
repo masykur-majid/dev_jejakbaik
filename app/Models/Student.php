@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\Guarded;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-#[Fillable('nisn', 'nis', 'student_name', 'email', 'current_grade', 'class_group_id', 'teacher_id')]
+#[Guarded('id')]
 class Student extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentFactory> */
@@ -92,4 +95,18 @@ class Student extends Model
     {
         return self::whereNull('teacher_id')->count();
     }
+
+
+    //point log
+    public function pointLogs(): MorphMany
+    {
+        return $this->morphMany(PointLog::class, 'subject');
+    }
+
+    public function pointLogDetails(): HasMany
+    {
+        return $this->hasMany(PointLogDetail::class, 'student_id');
+    }
+
+    
 }

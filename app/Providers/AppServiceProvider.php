@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\ConductRule;
 use App\Models\ReadingLog;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\User;
 use App\Observers\ReadingLogObserver;
 use App\Observers\StudentObserver;
 use App\Observers\TeacherObserver;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,5 +31,12 @@ class AppServiceProvider extends ServiceProvider
         Teacher::observe(TeacherObserver::class);
         Student::observe(StudentObserver::class);
         ReadingLog::observe(ReadingLogObserver::class);
+
+        Relation::enforceMorphMap([
+            'conduct' => ConductRule::class,
+            'student' => Student::class,
+            'user' => User::class,
+        ]);
+
     }
 }

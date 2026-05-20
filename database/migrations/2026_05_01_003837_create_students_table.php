@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('nis')->unique()->nullable();
             $table->string('student_name');
             $table->string('email')->unique();
-            $table->string('current_grade')->default('X');
+            $table->string('current_grade')->default('10');
 
             //foreign to table classgroups
             $table->foreignId('class_group_id')
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->foreignId('teacher_id')
                   ->nullable()
                   ->onDelete('set null');
-                  
+            $table->integer('current_point')->default(150);
             $table->timestamps();
         });
     }
