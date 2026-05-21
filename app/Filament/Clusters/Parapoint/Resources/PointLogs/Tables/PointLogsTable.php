@@ -40,7 +40,7 @@ class PointLogsTable
                     ->icon(function (String $state){
                         $cleanstate = strtolower(class_basename($state));
                         return match($cleanstate){
-                             'conductrule', 'conduct' => TablerIcon::Gavel,
+                            'conductrule', 'conduct' => TablerIcon::Gavel,
                             'student' => Heroicon::UserCircle,
                             default => HeroIcon::InformationCircle,
                         };

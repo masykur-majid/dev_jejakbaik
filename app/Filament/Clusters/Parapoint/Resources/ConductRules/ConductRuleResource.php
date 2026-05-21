@@ -12,6 +12,7 @@ use App\Filament\Clusters\Parapoint\Resources\ConductRules\Schemas\ConductRuleIn
 use App\Filament\Clusters\Parapoint\Resources\ConductRules\Tables\ConductRulesTable;
 use App\Models\ConductRule;
 use BackedEnum;
+use Daljo25\FilamentTablerIcons\Enums\TablerIcon;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -22,7 +23,7 @@ class ConductRuleResource extends Resource
 {
     protected static ?string $model = ConductRule::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = TablerIcon::Notebook;
 
     // protected static ?string $cluster = ParapointCluster::class;
 
