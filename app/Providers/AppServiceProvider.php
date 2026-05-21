@@ -32,11 +32,5 @@ class AppServiceProvider extends ServiceProvider
         Student::observe(StudentObserver::class);
         ReadingLog::observe(ReadingLogObserver::class);
 
-        Relation::enforceMorphMap([
-            'conduct' => ConductRule::class,
-            'student' => Student::class,
-            'user' => User::class,
-        ]);
-
     }
 }

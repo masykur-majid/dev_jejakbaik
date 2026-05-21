@@ -2,6 +2,8 @@
 
 namespace App\Filament\Clusters\Parapoint\Resources\PointLogs\Tables;
 
+use App\Models\ConductRule;
+use App\Models\Student;
 use Daljo25\FilamentTablerIcons\Enums\TablerIcon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -21,23 +23,17 @@ class PointLogsTable
                     ->label('Reported At')
                     ->dateTime()
                     ->sortable()
-                    ->since(),
+                    ->dateTime('d M Y'),
                 TextColumn::make('subject_type')
                     ->searchable()
                     ->formatStateUsing(function (string $state) {
-                        // 1. Bersihkan string. 
-                        // Jika isinya 'App\Models\ConductRule', akan dipotong jadi 'ConductRule'
-                        // Jika isinya sudah 'conduct', akan tetap jadi 'conduct'
                         $cleanState = class_basename($state); 
-
-                        // 2. Ubah menjadi huruf kecil semua agar pengecekan match di bawah ini akurat
                         $lowerState = strtolower($cleanState);
 
-                        // 3. Terjemahkan ke bahasa manusia yang rapi
                         return match ($lowerState) {
                             'conductrule', 'conduct' => 'Conduct',
                             'student' => 'Student',
-                            default => $state, // Jika tidak cocok, tampilkan apa adanya sesuai DB
+                            default => $state, 
                         };
                     })
                     ->badge()
@@ -50,8 +46,19 @@ class PointLogsTable
                         };
                     }),
                 TextColumn::make('subject_id')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->state(function ($record){
+                        // dd($record->subject);
+                        if($record->subject instanceof ConductRule){
+                            return $record->subject->conduct_name;
+                        }
+                        if($record->subject instanceof Student){
+                            return $record->subject->student_name;
+                        }
+
+                    })
+                    ->wrap()
+                    ->lineClamp(2),
                 TextColumn::make('teacher.teacher_name')
                     ->searchable(),
                 TextColumn::make('updated_at')
