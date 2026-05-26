@@ -18,7 +18,9 @@ class StudentPointsTable
         return $table
             ->columns([
                 TextColumn::make('nisn'),
-                TextColumn::make('student_name'),
+                TextColumn::make('student_name')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('classGroup.class_name'),
                 TextColumn::make('current_points')
                     ->label('Point')
