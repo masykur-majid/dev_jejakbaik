@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 #[Guarded('id')]
 class PointLog extends Model
 {
+    protected $appends = ['subject_name'];
+    
     public function subject(): MorphTo
     {
         return $this->morphTo();
@@ -35,5 +37,13 @@ class PointLog extends Model
     {
         return $this->subject_type === ConductRule::class;
     }
-    
+
+    public function getSubjectNameAttribute(): string
+    {
+        return match($this->subject_type){
+            'student' => $this->subject?->student_name ?? '-',
+            'conduct' => $this->subject?->conduct_name ?? '-',
+            default => '-'
+        };
+    }
 }

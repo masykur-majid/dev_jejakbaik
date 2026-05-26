@@ -14,6 +14,7 @@ use App\Filament\Clusters\Parapoint\Resources\PointLogs\Schemas\PointLogInfolist
 use App\Filament\Clusters\Parapoint\Resources\PointLogs\Tables\PointLogsTable;
 use App\Models\PointLog;
 use BackedEnum;
+use Daljo25\FilamentTablerIcons\Enums\TablerIcon;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -24,7 +25,7 @@ class PointLogResource extends Resource
 {
     protected static ?string $model = PointLog::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = TablerIcon::ListDetailsFilled;
 
     // protected static ?string $cluster = ParapointCluster::class;
 

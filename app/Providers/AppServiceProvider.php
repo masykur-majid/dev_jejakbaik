@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\ConductRule;
+use App\Models\PointLogDetail;
 use App\Models\ReadingLog;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use App\Observers\PointLogDetailObserver;
 use App\Observers\ReadingLogObserver;
 use App\Observers\StudentObserver;
 use App\Observers\TeacherObserver;
@@ -31,12 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Teacher::observe(TeacherObserver::class);
         Student::observe(StudentObserver::class);
         ReadingLog::observe(ReadingLogObserver::class);
-
-        Relation::enforceMorphMap([
-            'conduct' => ConductRule::class,
-            'student' => Student::class,
-            'user' => User::class,
-        ]);
+        PointLogDetail::observe(PointLogDetailObserver::class);
 
     }
 }
