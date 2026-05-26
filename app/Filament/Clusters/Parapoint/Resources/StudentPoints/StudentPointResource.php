@@ -3,8 +3,6 @@
 namespace App\Filament\Clusters\Parapoint\Resources\StudentPoints;
 
 use App\Filament\Clusters\Parapoint\ParapointCluster;
-use App\Filament\Clusters\Parapoint\Resources\StudentPoints\Pages\CreateStudentPoint;
-use App\Filament\Clusters\Parapoint\Resources\StudentPoints\Pages\EditStudentPoint;
 use App\Filament\Clusters\Parapoint\Resources\StudentPoints\Pages\ListStudentPoints;
 use App\Filament\Clusters\Parapoint\Resources\StudentPoints\Pages\ViewStudentPoint;
 use App\Filament\Clusters\Parapoint\Resources\StudentPoints\RelationManagers\PointLogDetailsRelationManager;
@@ -16,7 +14,6 @@ use BackedEnum;
 use Daljo25\FilamentTablerIcons\Enums\TablerIcon;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 

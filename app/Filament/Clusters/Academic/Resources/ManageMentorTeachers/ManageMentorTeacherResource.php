@@ -31,6 +31,10 @@ class ManageMentorTeacherResource extends Resource
 
     protected static string| UnitEnum |null $navigationGroup = 'Akademik';
 
+    protected static ?string $slug = 'mentor-teacher';
+    protected static ?string $modelLabel = 'Mentor Teacher';
+    protected static ?string $pluralModelLabel = 'Mentor Teachers'; 
+
 //    protected static ?string $cluster = AcademicCluster::class;
     
     protected static ?string $navigationLabel = 'Guru Wali';
