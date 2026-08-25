@@ -25,9 +25,9 @@ class BookResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = TablerIcon::Books;
 
-    protected static string| UnitEnum |null $navigationGroup = 'Literasi Pagi';
+    // protected static string| UnitEnum |null $navigationGroup = 'Literasi Pagi';
 
-    // protected static ?string $cluster = MorningLiteracyCluster::class;
+    protected static ?string $cluster = MorningLiteracyCluster::class;
 
     public static function form(Schema $schema): Schema
     {

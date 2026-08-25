@@ -10,7 +10,7 @@ use Filament\Support\Icons\Heroicon;
 class AcademicCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquares2x2;
-    // protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::null;
+    protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Start;
 
     
 }

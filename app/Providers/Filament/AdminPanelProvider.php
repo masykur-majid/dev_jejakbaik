@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
                 'Neutral' => Color::Neutral,
                 'Colour4' => Color::Zinc
             ])
+            ->topNavigation(false)
             ->darkMode(false)
             ->sidebarCollapsibleOnDesktop()
             ->font('Poppins')

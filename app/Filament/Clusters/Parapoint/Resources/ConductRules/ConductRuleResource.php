@@ -29,6 +29,8 @@ class ConductRuleResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = "ParaPoint";
 
+    protected static ?string $navigationLabel = 'Aturan Poin';
+
     public static function form(Schema $schema): Schema
     {
         return ConductRuleForm::configure($schema);

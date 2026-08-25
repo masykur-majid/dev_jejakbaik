@@ -27,9 +27,11 @@ class PointLogResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = TablerIcon::ListDetailsFilled;
 
-    // protected static ?string $cluster = ParapointCluster::class;
+    //protected static ?string $cluster = ParapointCluster::class;
 
     protected static string|UnitEnum|null $navigationGroup = 'ParaPoint';
+
+    protected static ?string $navigationLabel = 'Catatan Poin Siswa';
 
     public static function infolist(Schema $schema): Schema
     {

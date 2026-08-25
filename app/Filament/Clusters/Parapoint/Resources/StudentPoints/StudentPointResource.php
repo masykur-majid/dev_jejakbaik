@@ -30,13 +30,12 @@ class StudentPointResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'ParaPoint';
 
-    
-    
-    protected static ?string $navigationLabel = 'Student Point';
+    protected static ?string $navigationLabel = 'Rekap Poin Siswa';
  
     protected static ?string $pluralLabel = 'Student Points';
  
     protected static ?string $modelLabel = 'Student Point';
+
     public static function form(Schema $schema): Schema
     {
         return StudentPointForm::configure($schema);
